@@ -30,7 +30,7 @@ Graph::Graph(int vertexCount)
 	}
 }
 
-Graph::Graph(ifstream inputFile, int vertexCount)
+Graph::Graph(ifstream &inputFile, int vertexCount)
 {
 	const int inf = 2000000000;
 	_vertexCount = vertexCount;

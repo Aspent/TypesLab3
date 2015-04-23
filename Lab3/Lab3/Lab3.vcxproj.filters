@@ -21,9 +21,15 @@
     <ClCompile Include="graph.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
+    <ClCompile Include="FileFiller.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graph.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="FileFiller.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>

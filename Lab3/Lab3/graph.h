@@ -13,7 +13,7 @@ private:
 public:
 	Graph();
 	Graph(int vertexCount);
-	Graph(ifstream inputFile, int vertexCount);
+	Graph(ifstream &inputFile, int vertexCount);
 	void PrintMatrix();
 	Graph GetMinSpanningTree();
 };
