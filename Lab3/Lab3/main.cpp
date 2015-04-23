@@ -16,8 +16,10 @@ void main()
 	graph.PrintMatrix();
 
 	Graph minTree = graph.GetMinSpanningTree();
-	cout << endl;
-	minTree.PrintMatrix();
+	//cout << endl;
+	//minTree.PrintMatrix();
+	cout << "Edges of minimum spanning tree:" << endl;
+	minTree.PrintEdges();
 
 	inputFile.close();
 	system("pause");

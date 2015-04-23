@@ -118,10 +118,25 @@ Graph Graph::GetMinSpanningTree()
 			}
 		}
 		isMarked[secondVertOfMin] = true;
-		cout << firstVertOfMin+1 << "-" << secondVertOfMin+1 << "  " << min << endl;
+		//cout << firstVertOfMin + 1 << "-" << secondVertOfMin + 1 << "  " << min << endl;
 		minTree._adjacencyMatrix[firstVertOfMin][secondVertOfMin] = min;
 		minTree._adjacencyMatrix[secondVertOfMin][firstVertOfMin] = min;
 	}
 
 	return minTree;
+}
+
+void Graph::PrintEdges()
+{
+	const int inf = 2000000000;
+	for (int i = 0; i < _vertexCount; i++)
+	{
+		for (int j = i + 1; j < _vertexCount; j++)
+		{
+			if (_adjacencyMatrix[i][j] != inf)
+			{
+				cout << i + 1 << "-" << j + 1 << "  " << _adjacencyMatrix[i][j] << endl;
+			}
+		}
+	}
 }

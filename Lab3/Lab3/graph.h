@@ -16,6 +16,7 @@ public:
 	Graph(ifstream &inputFile, int vertexCount);
 	void PrintMatrix();
 	Graph GetMinSpanningTree();
+	void PrintEdges();
 };
 
 
