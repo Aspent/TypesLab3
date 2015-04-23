@@ -11,6 +11,7 @@ private:
 
 public:
 	Graph();
+	Graph(int vertexCount);
 	Graph(ifstream inputFile);
 
 	Graph GetMinSpanningTree();
