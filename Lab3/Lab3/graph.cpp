@@ -8,12 +8,16 @@ Graph::Graph()
 	const int inf = 2000000000;
 	_vertexCount = 1;
 	_adjacencyMatrix = new int*[1];
-	_adjacencyMatrix[1] = new int[1];
+	_adjacencyMatrix[0] = new int[1];
 	_adjacencyMatrix[0][0] = 0;
 }
 
 Graph::Graph(int vertexCount)
 {
+	if (vertexCount < 1)
+	{
+		throw invalid_argument("Wrong count of vertexes");
+	}
 	const int inf = 2000000000;
 	_vertexCount = vertexCount;
 	_adjacencyMatrix = new int*[vertexCount];
@@ -32,6 +36,10 @@ Graph::Graph(int vertexCount)
 
 Graph::Graph(ifstream &inputFile, int vertexCount)
 {
+	if (vertexCount < 1)
+	{
+		throw invalid_argument("Error in initialization of graph: Wrong count of vertexes");
+	}
 	const int inf = 2000000000;
 	_vertexCount = vertexCount;
 	_adjacencyMatrix = new int*[vertexCount];
@@ -56,6 +64,16 @@ Graph::Graph(ifstream &inputFile, int vertexCount)
 		_adjacencyMatrix[firstVertex-1][secondVertex-1] = weight;
 		_adjacencyMatrix[secondVertex-1][firstVertex-1] = weight;
 	}
+}
+
+int Graph::GetVertexCount()
+{
+	return _vertexCount;
+}
+
+int** Graph::GetAdjancencyMatrix()
+{
+	return _adjacencyMatrix;
 }
 
 void Graph::PrintMatrix()
@@ -92,7 +110,7 @@ Graph Graph::GetMinSpanningTree()
 
 	isMarked[0] = true;
 	
-	for (int k = 0; k < 5; k++)
+	for (int k = 0; k < _vertexCount-1; k++)
 	{
 
 		int min = inf;
@@ -136,6 +154,21 @@ void Graph::PrintEdges()
 			if (_adjacencyMatrix[i][j] != inf)
 			{
 				cout << i + 1 << "-" << j + 1 << "  " << _adjacencyMatrix[i][j] << endl;
+			}
+		}
+	}
+}
+
+void Graph::WriteEdgesInFile(ofstream &file)
+{
+	const int inf = 2000000000;
+	for (int i = 0; i < _vertexCount; i++)
+	{
+		for (int j = i + 1; j < _vertexCount; j++)
+		{
+			if (_adjacencyMatrix[i][j] != inf)
+			{
+				file << i + 1 << " " << j + 1 << " " << _adjacencyMatrix[i][j] << endl;
 			}
 		}
 	}

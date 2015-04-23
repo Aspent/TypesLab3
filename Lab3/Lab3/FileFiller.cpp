@@ -3,7 +3,11 @@
 
 void FileFiller::FillWithRandomEdges(ofstream &file, int vertexCount)
 {
-	//srand(time(NULL));
+	srand(time(NULL));
+	if (vertexCount < 1)
+	{
+		throw invalid_argument("Error in filling file: Wrong count of vertexes");
+	}
 	for (int i = 1; i <= vertexCount; i++)
 	{
 		for (int j = i + 1; j <= vertexCount; j++)

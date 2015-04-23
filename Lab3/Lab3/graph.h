@@ -14,9 +14,12 @@ public:
 	Graph();
 	Graph(int vertexCount);
 	Graph(ifstream &inputFile, int vertexCount);
+	int GetVertexCount();
+	int** GetAdjancencyMatrix();
 	void PrintMatrix();
 	Graph GetMinSpanningTree();
 	void PrintEdges();
+	void WriteEdgesInFile(ofstream &file);
 };
 
 
