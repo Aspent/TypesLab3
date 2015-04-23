@@ -53,8 +53,8 @@ Graph::Graph(ifstream &inputFile, int vertexCount)
 		inputFile >> firstVertex;
 		inputFile >> secondVertex;
 		inputFile >> weight;
-		_adjacencyMatrix[firstVertex][secondVertex] = weight;
-		_adjacencyMatrix[secondVertex][firstVertex] = weight;
+		_adjacencyMatrix[firstVertex-1][secondVertex-1] = weight;
+		_adjacencyMatrix[secondVertex-1][firstVertex-1] = weight;
 	}
 }
 
@@ -77,4 +77,51 @@ void Graph::PrintMatrix()
 		}
 		cout << endl;
 	}
+}
+
+Graph Graph::GetMinSpanningTree()
+{
+	const int inf = 2000000000;
+	Graph minTree(_vertexCount);
+
+	bool* isMarked = new bool[_vertexCount];
+	for (int i = 0; i < _vertexCount; i++)
+	{
+		isMarked[i] = false;
+	}
+
+	isMarked[0] = true;
+	
+	for (int k = 0; k < 5; k++)
+	{
+
+		int min = inf;
+		int firstVertOfMin = -1;
+		int secondVertOfMin = -1;
+
+		for (int i = 0; i < _vertexCount; i++)
+		{
+			if (isMarked[i])
+			{
+				for (int j = 0; j < _vertexCount; j++)
+				{
+					if (!isMarked[j])
+					{
+						if (_adjacencyMatrix[i][j] < min)
+						{
+							min = _adjacencyMatrix[i][j];
+							firstVertOfMin = i;
+							secondVertOfMin = j;
+						}
+					}
+				}
+			}
+		}
+		isMarked[secondVertOfMin] = true;
+		cout << firstVertOfMin+1 << "-" << secondVertOfMin+1 << "  " << min << endl;
+		minTree._adjacencyMatrix[firstVertOfMin][secondVertOfMin] = min;
+		minTree._adjacencyMatrix[secondVertOfMin][firstVertOfMin] = min;
+	}
+
+	return minTree;
 }

@@ -7,6 +7,7 @@ using namespace std;
 
 class FileFiller
 {
+public:
 	void FillWithRandomEdges(ofstream &file, int vertexCount);
 };
 
